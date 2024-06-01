@@ -7,8 +7,9 @@ import 'player.dart';
 
 class VideoView extends StatefulWidget{
   final Player player;
+  final FijkFit fit;
 
-  const VideoView(this.player);
+  const VideoView(this.player, {this.fit = FijkFit.contain});
 
   @override
   State<StatefulWidget> createState() => _VideoViewState();
@@ -21,7 +22,7 @@ class _VideoViewState extends State<VideoView> {
       body: GestureDetector(
         onTap: onTapVideo,
         child: Stack(children: [
-            AbsorbPointer(absorbing: true, child: FijkView(player: widget.player)),
+            AbsorbPointer(absorbing: true, child: FijkView(player: widget.player, fit: widget.fit,)),
             if (widget.player.state == FijkState.paused)
               Align(
                 alignment: Alignment.center,
